@@ -1,52 +1,27 @@
-import 'package:chat_app/auth/auth_service.dart';
 import 'package:chat_app/components/my_button.dart';
 import 'package:chat_app/components/my_textfield.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-class LoginPage extends StatelessWidget{
-
-final TextEditingController _emailController=TextEditingController();
+class RegisterPage extends StatelessWidget {
+  final TextEditingController _emailController=TextEditingController();
 final TextEditingController _passwordController = TextEditingController();
+final TextEditingController _confirmpasswordController = TextEditingController();
 
-///Playing with the gestures of the login and register 
-void Function()? ontapRegister;
-
-
-
-LoginPage({super.key, required this.ontapRegister});
+void Function()? ontapLogin;
+   RegisterPage({super.key, this.ontapLogin});
 
 
-void login(BuildContext context) async{
+void register(){
 
 
-  ///Auth Service
-  final authService = AuthService(); 
-/////Try Login
-try{
-await authService.signinWithEmailPassword(_emailController.text, _passwordController.text);
-
-
-} catch (e){
-
-showDialog(context: context, builder: (context) {
-    return AlertDialog(
-      title: Text(e.toString())
-    );
-  },
-
-
-);
-
+  
 }
 
-
-}
-@override
-Widget build(BuildContext context){
-return Scaffold(
-
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
 
 
   backgroundColor: Theme.of(context).colorScheme.background,
@@ -67,7 +42,7 @@ Padding(padding: EdgeInsets.all(10),child: Container(child: SvgPicture.asset("as
 
 
 const SizedBox(height: 30,),
-Text("Welcome Back, you've been misssed"),
+Text("Let's Create an Account for you"),
 const SizedBox(height: 30,),
 
 
@@ -78,24 +53,27 @@ const SizedBox (height: 10,),
 ////Passowrd
 MyTextField(hintText: "Password",isPassword: true,controller:_passwordController,),
 const SizedBox(height: 10,),
+////Confirm Passowrd
+MyTextField(hintText: "Confirm Password",isPassword: true,controller:_confirmpasswordController,),
+const SizedBox(height: 10,),
 
-////Login Buttion
-MyButton(buttonText: "Login",onTap: ()=>login(context),),
+////Register Buttion
+MyButton(buttonText: "Register",onTap: register,),
 
 
 
 ///Register Now 
 Row(mainAxisAlignment: MainAxisAlignment.center,
   children: [
-    Text("Not a Member?",
+    Text("Already a member?",
     style: TextStyle(color: Colors.grey.shade500,
 
 
 
     ),),
-    GestureDetector(onTap: ontapRegister,
+    GestureDetector(onTap: ontapLogin,
       child: Text(" Register Now",
-      style: TextStyle(color: Colors.grey.shade500,
+      style: TextStyle(color: Theme.of(context).colorScheme.primary,
               fontWeight: FontWeight.bold
       
       
@@ -110,16 +88,5 @@ Row(mainAxisAlignment: MainAxisAlignment.center,
 
 ],),
 );
-
-
+  }
 }
-
-
-
-
-
-}
-
-
-
-
