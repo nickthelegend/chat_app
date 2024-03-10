@@ -1,3 +1,4 @@
+import 'package:chat_app/components/my_button.dart';
 import 'package:chat_app/components/my_textfield.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -9,7 +10,10 @@ final TextEditingController _passwordController = TextEditingController();
 
 
 LoginPage({super.key});
+void login(){
 
+
+}
 @override
 Widget build(BuildContext context){
 return Scaffold(
@@ -43,16 +47,32 @@ const SizedBox(height: 30,),
 MyTextField(hintText: "Email",isPassword: false,controller: _emailController,),
 const SizedBox (height: 10,),
 ////Passowrd
-MyTextField(hintText: "Password",isPassword: true,controller:_passwordController,)
-
+MyTextField(hintText: "Password",isPassword: true,controller:_passwordController,),
+const SizedBox(height: 10,),
 
 ////Login Buttion
-
+MyButton(buttonText: "Login",onTap: login,),
 
 
 
 ///Register Now 
+Row(mainAxisAlignment: MainAxisAlignment.center,
+  children: [
+    Text("Not a Member?",
+    style: TextStyle(color: Colors.grey.shade500,
 
+
+
+    ),),
+    Text(" Register Now",
+    style: TextStyle(color: Colors.grey.shade500,
+            fontWeight: FontWeight.bold
+
+
+    ),),
+
+  ],
+)
 
 
 /////we have to make all these components so i will be making a new folder with the name of components 
